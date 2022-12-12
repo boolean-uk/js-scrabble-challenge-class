@@ -14,19 +14,18 @@ class Scrabble {
   }
 
   score() {
-    for (const character of this.word) {
-      console.log('Looping in char :', character)
+    let total = 0
+    if (!this.word) return total
+
+    for (const char of this.word) {
       for (const score in this.scoreTable) {
-        console.log('Score: ', score)
-        if (score.includes(String(character).toUpperCase())) {
-          console.log('Includes char in ', score)
+        if (this.scoreTable[score].includes(String(char).toUpperCase())) {
+          total += Number(score)
         }
       }
     }
+    return total
   }
 }
-
-const lucianoScrabble = new Scrabble('luciano')
-console.log(lucianoScrabble.score())
 
 module.exports = Scrabble
